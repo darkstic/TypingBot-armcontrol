@@ -1,8 +1,20 @@
 import os
 import subprocess
 import sys
+import shutil
 
 username = os.environ.get("USERNAME") or os.environ.get("USER")
+
+def move_tesseract():
+    source_folder_path = f"C:\\Users\\{username}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\tesseract"
+    destination_folder_path = "C:\\TypingBotAssets"
+
+    try:
+        shutil.move(source_folder_path, destination_folder_path)
+        print(f"Folder moved successfully from {source_folder_path} to {destination_folder_path}")
+    except Exception as e:
+        print(f"Error moving folder: {e}")
+
 
 def create_folder(folder_path):
     try:
@@ -49,4 +61,5 @@ if __name__ == "__main__":
     package_to_install = "tesseract"  
     install_package(package_to_install)
     sys.path.insert(0, f"C:\\Users\\{username}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\tesseract\\__pycache__")
+    move_tesseract()
 
